@@ -38,7 +38,7 @@ borg create                     \
     --show-rc                   \
     --compression lzma,9        \
     --exclude-caches            \
-    --exclude **/.DS_Store      \
+    --exclude "*/.DS_Store"     \
                                 \
     ::'{hostname}-{now}'        \
     $HOME/Work                  \
