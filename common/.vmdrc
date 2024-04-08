@@ -19,3 +19,5 @@ color Display FPS black
 axes location off
 
 menu main on
+
+user add key 1 "mol modstyle all all NewCartoon;mol modcolor all all Structure"
