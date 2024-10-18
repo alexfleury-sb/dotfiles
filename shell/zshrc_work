@@ -25,3 +25,5 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+alias vmd="/Applications/VMD\ 1.9.4a57-arm64-Rev12.app/Contents/MacOS/startup.command ; exit;"
