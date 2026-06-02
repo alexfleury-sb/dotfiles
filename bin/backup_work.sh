@@ -18,7 +18,7 @@ export BORG_PASSPHRASE=$(op read op://Employee/BorgBackup/password)
 # Setting this, so the repo does not need to be given on the commandline.
 export BORG_REPO="$HOME/Backups"
 # This is the location you want to send the BORG_REPO to.
-export CLOUD_DEST=$(op read op://Employee/BorgBackup/password)
+export CLOUD_DEST=$(op read op://Employee/BorgBackup/bucket)
 
 info "Starting backup..."
 
