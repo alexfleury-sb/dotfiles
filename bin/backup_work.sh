@@ -4,11 +4,8 @@
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap "echo $( date ) Backup interrupted >&2; exit 2" INT TERM
 
-# Destination repo can be "gdrive" (default) or "usb".
-DEST_REPO="${1:-"gdrive"}"
-
 # Close if borg or rclone is running.
-if pgrep "borg" || pgrep "rclone" > /dev/null
+if pgrep "borg" > /dev/null
 then
     Info "Backup already running, exiting"
     exit
@@ -19,17 +16,9 @@ fi
 export BORG_PASSPHRASE=$(op read op://Employee/BorgBackup/password)
 
 # Setting this, so the repo does not need to be given on the commandline.
-if [[ $DEST_REPO = "gdrive" ]]; then
-    export BORG_REPO="$HOME/Backups"
-    #This is the location you want Rclone to send the BORG_REPO to
-    export CLOUDDEST="gdrive:/Backups"
-elif [[ $DEST_REPO = "usb" ]]; then
-    export BORG_REPO="/Volumes/Lexar/Backups"
-else
-    info "Unsupported destination. Backup aborted."
-    exit
-    exit
-fi
+export BORG_REPO="$HOME/Backups"
+# This is the location you want to send the BORG_REPO to.
+export CLOUD_DEST=$(op read op://Employee/BorgBackup/password)
 
 info "Starting backup..."
 
@@ -75,15 +64,18 @@ prune_exit=$?
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 unset BORG_PASSPHRASE
 
-# Execute rclone if no errors and the "gdrive" destination is selected.
-if [[ ( $DEST_REPO = "gdrive" ) && ( ${global_exit} -eq 0 ) ]]; then
-    info "Rclone Borg sync has started..."
-    rclone sync $BORG_REPO $CLOUDDEST -P --stats 1s -v
-    info "Rclone Borg sync completed."
+# Cloud sync.
+if [[ ( ${global_exit} -eq 0 ) ]]; then
+    info "Bucket sync has started..."
+    gcloud storage rsync -r $BORG_REPO $CLOUD_DEST
+    info "Bucket sync completed."
 elif [[ ${global_exit} -eq 0 ]]; then
-    info "Backup, Prune and/or Compact finished sucessfully without Rclone."
+    info "Backup, Prune and/or Compact finished sucessfully without cloud synchronization."
 else
     info "Backup, Prune and/or Compact finished with an error."
 fi
+
+unset BORG_REPO
+unset CLOUD_DEST
 
 exit ${global_exit}
