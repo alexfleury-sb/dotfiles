@@ -1,32 +1,38 @@
 {
-    "files.trimTrailingWhitespace": true,
-    "editor.minimap.enabled": false,
-    "editor.rulers": [
-        88
-    ],
-    "extensions.ignoreRecommendations": true,
-    "python.terminal.activateEnvironment": false,
-    "editor.formatOnSave": true,
-    "files.insertFinalNewline": true,
-    "python.createEnvironment.trigger": "off",
-    "workbench.colorTheme": "Dracula Theme",
-    "remote.SSH.serverInstallPath": {
-        "bench-forwarded": "/scratch"
-    },
-    "remote.SSH.remoteServerListenOnSocket": true,
-    "remote.SSH.remotePlatform": {
-        "bench-forwarded": "linux"
-    },
-    "workbench.iconTheme": "vs-minimal",
-    "github.copilot.enable": {
-        "*": false,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
-    },
-    "editor.renderWhitespace": "all",
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "git.openRepositoryInParentFolders": "never",
-    "chat.tips.enabled": false,
-    "chat.viewSessions.orientation": "stacked"
+  "files.trimTrailingWhitespace": true,
+  "editor.minimap.enabled": false,
+  "editor.rulers": [
+    88
+  ],
+  "extensions.ignoreRecommendations": true,
+  "python.terminal.activateEnvironment": false,
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "python.createEnvironment.trigger": "off",
+  "workbench.colorTheme": "Dracula Theme",
+  "remote.SSH.serverInstallPath": {
+    "bench-forwarded": "/scratch"
+  },
+  "remote.SSH.remoteServerListenOnSocket": true,
+  "remote.SSH.remotePlatform": {
+    "bench-forwarded": "linux"
+  },
+  "workbench.iconTheme": "vs-minimal",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "editor.renderWhitespace": "all",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "git.openRepositoryInParentFolders": "never",
+  "chat.tips.enabled": false,
+  "chat.viewSessions.orientation": "stacked",
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.disableLoginPrompt": true,
+  "claudeCode.selectedModel": "claude-opus-4-8[1m]",
+  "claudeCode.enableNewConversationShortcut": true,
+  "terminal.integrated.suggest.enabled": false,
+  "chat.disableAIFeatures": true
 }
