@@ -34,5 +34,9 @@
   "claudeCode.selectedModel": "claude-opus-4-8[1m]",
   "claudeCode.enableNewConversationShortcut": true,
   "terminal.integrated.suggest.enabled": false,
-  "chat.disableAIFeatures": true
+  "chat.disableAIFeatures": true,
+  "workbench.activityBar.compact": true,
+  "window.commandCenter": false,
+  "workbench.browser.showInTitleBar": false,
+  "security.workspace.trust.enabled": false,
 }
