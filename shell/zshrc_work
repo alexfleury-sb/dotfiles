@@ -1,5 +1,11 @@
 # Local configuration for a work ZSH environment.
 
+# Aliases
+alias note="code $HOME/Work/flowernotes/notes/random_notes.md"
+alias awslogin='aws sso login --sso-session sandboxaq' # AWS CLI login
+alias awsid="aws sts get-caller-identity" # AWS Identity for session
+alias gs="gcloud storage"
+
 # Homebrew.
 export PATH="${HOMEBREW_PREFIX}/opt/openssl/bin:$PATH"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:$PATH"
@@ -8,19 +14,15 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:$PATH"
 # https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
+# Fix gcloud crashed (CommandLoadFailure): 
+# Problem loading gcloud.storage.cp: module 'ssl' has no attribute 'PROTOCOL_TLSv1'. 
+export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.12
+
 # Pixi
 export PATH="$HOME/.pixi/bin:$PATH"
 
-alias note="code $HOME/Work/flowernotes/notes/random_notes.md"
-
 # Github access in bench.
 ssh-add -l | grep -q `ssh-keygen -lf ~/.ssh/github  | awk '{print $2}'` || ssh-add --apple-use-keychain ~/.ssh/github
-
-# AWS CLI login
-alias awslogin='aws sso login --sso-session sandboxaq'
-
-# AWS Identity for session
-alias awsid="aws sts get-caller-identity"
 
 # AWS SSO creds
 awscreds() {
@@ -29,3 +31,6 @@ awscreds() {
 
 # AWS profiles listing
 alias awsprofiles="aws configure list-profiles | grep -v default"
+
+# Removed PQC warning from GCloud because grpcio < 1.83.0.
+export PYTHONWARNINGS="ignore::FutureWarning:google.api_core._python_package_support"
