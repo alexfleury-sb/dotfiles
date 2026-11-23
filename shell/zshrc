@@ -54,3 +54,8 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# Fix "Error opening terminal: xterm-kitty" for setuid TUI tools.
+# top (setuid root) ignores ~/.terminfo and $TERMINFO, and /usr/share/terminfo
+# is read-only under SIP, so give these tools a TERM present in the system DB.
+alias top='TERM=xterm-256color top'
