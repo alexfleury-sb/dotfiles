@@ -37,6 +37,8 @@ borg create                     \
     --exclude "*/*.h5"          \
                                 \
     ::"{hostname}-{now}"        \
+    "$HOME/Claude"              \
+    "$HOME/React"               \
     "$HOME/Work"                \
     "$HOME/Zotero"
 
