@@ -1,4 +1,5 @@
-# Debian config file.
+# Debian config file. Run together with the shared base:
+#   ./install.sh base.yaml remote_debian.yaml
 
 - defaults:
     link:
@@ -10,12 +11,7 @@
 
 # Saving important regular files (content may be moved to the "_local" file).
 - shell:
-    - "[ ! -f ~/.gitconfig ] || test -h ~/.gitconfig || mv ~/.gitconfig ~/.gitconfig_backup"
     - "[ ! -f ~/.bashrc ] || test -h ~/.bashrc || mv ~/.bashrc ~/.bashrc_backup"
 
 - link:
     ~/.bashrc: shell/bashrc
-    ~/.dotfiles: ""
-    ~/.gitconfig: tools/gitconfig
-    ~/.gitignore_global: tools/gitignore_global
-    ~/.vmdrc: tools/vmdrc  

@@ -1,9 +1,9 @@
-# Print system information.
-if command -v fastfetch &> /dev/null; then
-	fastfetch
-fi
-
 export DISABLE_UPDATE_PROMPT=true
+
+# Keep PATH entries unique. zsh ties the `path` array to $PATH, so this makes
+# every prepend (here, common, zshrc_local, tmux/nested shells) deduplicate
+# automatically instead of letting $PATH grow on each re-source.
+typeset -U path PATH
 
 export PATH="$HOME/.local/bin:$PATH"
 
