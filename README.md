@@ -10,7 +10,14 @@ An install script is written in a way to accept arguments, although the limited 
 ./install.sh [-Q -q -v] [-d base_dir] config_a.yaml config_b.yaml ...
 ```
 
-Where `config_a.yaml` and `config_b.yaml` refers to different config files. 
+Where `config_a.yaml` and `config_b.yaml` refers to different config files, each
+run as a separate Dotbot invocation. Shared links live in `base.yaml`; pass it
+alongside the machine-specific config:
+
+```shell
+./install.sh base.yaml macos_work.yaml      # work laptop
+./install.sh base.yaml remote_debian.yaml   # remote Debian host
+```
 
 ## Backup scripts
 

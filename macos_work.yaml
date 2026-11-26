@@ -1,4 +1,5 @@
-# Macos (work) config file.
+# Macos (work) config file. Run together with the shared base:
+#   ./install.sh base.yaml macos_work.yaml
 
 - defaults:
     link:
@@ -10,19 +11,14 @@
 
 # Saving important regular files (content may be moved to the "_local" file).
 - shell:
-    - "[ ! -f ~/.gitconfig ] || test -h ~/.gitconfig || mv ~/.gitconfig ~/.gitconfig_backup"
     - "[ ! -f ~/.zshrc ] || test -h ~/.zshrc || mv ~/.zshrc ~/.zshrc_backup"
 
 - link:
     ~/.condarc: "tools/condarc"
     ~/.config/kitty: "config/kitty"
-    ~/.dotfiles: ""
-    ~/.gitconfig: "tools/gitconfig"
-    ~/.gitignore_global: "tools/gitignore_global"
     ~/.matplotlib/matplotlibrc: "tools/matplotlibrc_dark"
     ~/.ssh/config: "config/ssh_config"
     ~/.ssh/config_work: "config/ssh_config_work"
-    ~/.vmdrc: "tools/vmdrc"
     ~/.zprofile: "shell/zprofile"
     ~/.zshrc: "shell/zshrc"
     ~/.zshrc_local: "shell/zshrc_work"

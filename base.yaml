@@ -1,0 +1,22 @@
+# Common configuration shared across all machines.
+# Run together with an OS-specific config, e.g.:
+#   ./install.sh base.yaml macos_work.yaml
+#   ./install.sh base.yaml remote_debian.yaml
+
+- defaults:
+    link:
+        create: true
+        relink: true
+        force: true
+
+- clean: ["~", "~/.config"]
+
+# Saving important regular files (content may be moved to the "_local" file).
+- shell:
+    - "[ ! -f ~/.gitconfig ] || test -h ~/.gitconfig || mv ~/.gitconfig ~/.gitconfig_backup"
+
+- link:
+    ~/.dotfiles: ""
+    ~/.gitconfig: tools/gitconfig
+    ~/.gitignore_global: tools/gitignore_global
+    ~/.vmdrc: tools/vmdrc
